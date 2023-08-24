@@ -29,7 +29,7 @@ void push_opcode(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pall_opcode -  prints all the values on the stack, starting
+ * pall_opcode - prints all the values on the stack, starting
  * from the top of the stack
  *
  * @stack: pointer to the pointer to the top most element/node
@@ -46,4 +46,28 @@ void pall_opcode(stack_t **stack, unsigned int line_number)
 		return;
 
 	stack_display(*stack);
+}
+
+/**
+ * pint_opcode - prints the value at the top of the stack,
+ * followed by a new line
+ *
+ * @stack: pointer to the pointer to the top most element/node
+ *			of the stack
+ * @line_number: line number of the executing opcode
+ *
+ * Return: nothing
+ */
+void pint_opcode(stack_t **stack, unsigned int line_number)
+{
+	(void)line_number;
+
+	if (stack_is_empty(stack))
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pint, stack empty\n", essential.line_num);
+		fclose(essential.fp);
+		exit(EXIT_FAILURE);
+	}
+
+	printf("%d\n", (*stack)->n);
 }
