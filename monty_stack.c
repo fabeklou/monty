@@ -49,7 +49,8 @@ void stack_pop(stack_t **st)
 	stack_t *temp;
 
 	temp = (*st)->prev;
-	temp->next = NULL;
+	if (temp)
+		temp->next = NULL;
 	free(*st);
 
 	essential.stack_size--;

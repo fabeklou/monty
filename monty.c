@@ -14,7 +14,8 @@ trackg_t essential;
 void opcode_handler(char *opcode)
 {
 	unsigned int idx;
-	instruction_t oppcode_funcs[] = {{"pall", pall_opcode}, {"pint", pint_opcode}};
+	instruction_t oppcode_funcs[] = {
+		{"pall", pall_opcode}, {"pint", pint_opcode}, {"pop", pop_opcode}, {"swap", swap_opcode}};
 
 	for (idx = 0; idx < sizeof(oppcode_funcs) / sizeof(oppcode_funcs[0]); idx++)
 	{

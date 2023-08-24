@@ -84,6 +84,8 @@ void stack_display(stack_t *st);
 void pall_opcode(stack_t **stack, unsigned int line_number);
 void push_opcode(stack_t **stack, unsigned int line_number);
 void pint_opcode(stack_t **stack, unsigned int line_number);
+void pop_opcode(stack_t **stack, unsigned int line_number);
+void swap_opcode(stack_t **stack, unsigned int line_number);
 
 /* opcode utils */
 void opcode_handler(char *opcode);
