@@ -100,6 +100,7 @@ void rotr_opcode(stack_t **stack, unsigned int line_number);
 /* opcode utils */
 void opcode_handler(char *opcode);
 bool _strcmp(char *s1, char *s2);
+bool _is_valid_int(char *str);
 
 /* execution functions */
 void read_tok_run(FILE *fp);

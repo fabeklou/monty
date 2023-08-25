@@ -15,15 +15,11 @@ void opcode_handler(char *opcode)
 {
 	unsigned int idx;
 	instruction_t oppcode_funcs[] = {
-		{"pall", pall_opcode}, {"pint", pint_opcode}, {"pop", pop_opcode},
-		{"swap", swap_opcode}, {"add", add_opcode}, {"nop", nop_opcode},
-		{"sub", sub_opcode}, {"div", div_opcode}, {"mul", mul_opcode},
-		{"mod", mod_opcode}, {"pchar", pchar_opcode}, {"pstr", pstr_opcode},
-		{"rotl", rotl_opcode}, {"rotr", rotr_opcode}};
+		{"pall", pall_opcode}, {"pint", pint_opcode}, {"pop", pop_opcode}, {"swap", swap_opcode}, {"add", add_opcode}, {"nop", nop_opcode}, {"sub", sub_opcode}, {"div", div_opcode}, {"mul", mul_opcode}, {"mod", mod_opcode}, {"pchar", pchar_opcode}, {"pstr", pstr_opcode}, {"rotl", rotl_opcode}, {"rotr", rotr_opcode}};
 
 	for (idx = 0; idx < sizeof(oppcode_funcs) / sizeof(oppcode_funcs[0]); idx++)
 	{
-		if (_strcmp(opcode, oppcode_funcs[idx].opcode))
+		if (_strcmp(oppcode_funcs[idx].opcode, opcode))
 		{
 			oppcode_funcs[idx].f(&essential.st_top, essential.line_num);
 			return;
@@ -32,7 +28,7 @@ void opcode_handler(char *opcode)
 
 	dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n",
 			essential.line_num, opcode);
-
+	stack_free_all(essential.st_top);
 	fclose(essential.fp);
 	exit(EXIT_FAILURE);
 }
@@ -48,7 +44,6 @@ void opcode_handler(char *opcode)
 void read_tok_run(FILE *fp)
 {
 	char buffer[MAX_CHAR], *opcode, *num;
-	char *endptr;
 	char *push_oc = "push";
 
 	essential.line_num = 0;
@@ -68,7 +63,7 @@ void read_tok_run(FILE *fp)
 		{
 			num = strtok(NULL, " ");
 
-			if (num == NULL || (strtol(num, &endptr, 10) == 0 && num == endptr))
+			if (!_is_valid_int(num))
 			{
 				dprintf(STDERR_FILENO, "L%u: usage: push integer\n", essential.line_num);
 				fclose(fp);

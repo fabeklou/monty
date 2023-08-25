@@ -88,7 +88,6 @@ void pop_opcode(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	printf("\tI am about to pop ! and size is : %d \n", essential.stack_size);
 	stack_pop(stack);
 }
 
