@@ -15,7 +15,12 @@ void opcode_handler(char *opcode)
 {
 	unsigned int idx;
 	instruction_t oppcode_funcs[] = {
-		{"pall", pall_opcode}, {"pint", pint_opcode}, {"pop", pop_opcode}, {"swap", swap_opcode}, {"add", add_opcode}, {"nop", nop_opcode}, {"sub", sub_opcode}, {"div", div_opcode}, {"mul", mul_opcode}, {"mod", mod_opcode}, {"pchar", pchar_opcode}, {"pstr", pstr_opcode}, {"rotl", rotl_opcode}, {"rotr", rotr_opcode}};
+		{"pall", pall_opcode}, {"pint", pint_opcode}, {"pop", pop_opcode},
+		{"swap", swap_opcode}, {"add", add_opcode}, {"nop", nop_opcode},
+		{"sub", sub_opcode}, {"div", div_opcode}, {"mul", mul_opcode},
+		{"mod", mod_opcode}, {"pchar", pchar_opcode}, {"pstr", pstr_opcode},
+		{"rotl", rotl_opcode}, {"rotr", rotr_opcode}
+	};
 
 	for (idx = 0; idx < sizeof(oppcode_funcs) / sizeof(oppcode_funcs[0]); idx++)
 	{
