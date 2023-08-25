@@ -47,3 +47,26 @@ bool _is_valid_int(char *str)
 
 	return (true);
 }
+
+/**
+ * check_lastchar - checks whether the last character of a string
+ * is the new line character or not
+ *
+ * @str: the string to be checked
+ *
+ * Return: <true> if the last is new line, <false> otherwise
+ */
+bool check_lastchar(char *str)
+{
+	unsigned int i = 0;
+
+	if (str == NULL || !str[0])
+		return (false);
+
+	while (str[i])
+		i++;
+
+	if (str[i - 1] == '\n')
+		return (true);
+	return (false);
+}

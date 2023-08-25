@@ -19,7 +19,7 @@ void mod_opcode(stack_t **stack, unsigned int line_number)
 
 	if (essential.stack_size < 2)
 	{
-		dprintf(STDERR_FILENO, "L%u: can't mod, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
 		fclose(essential.fp);
 		if (essential.stack_size == 1)
 			stack_free_all(*stack);
@@ -30,7 +30,7 @@ void mod_opcode(stack_t **stack, unsigned int line_number)
 
 	if (temp == 0)
 	{
-		dprintf(STDERR_FILENO, "L%u: division by zero\n", line_number);
+		fprintf(stderr, "L%u: division by zero\n", line_number);
 		fclose(essential.fp);
 		stack_free_all(*stack);
 		exit(EXIT_FAILURE);
@@ -56,7 +56,7 @@ void pchar_opcode(stack_t **stack, unsigned int line_number)
 
 	if (stack_is_empty(stack))
 	{
-		dprintf(STDERR_FILENO, "L%u: can't pchar, stack empty\n", line_number);
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
 		fclose(essential.fp);
 		exit(EXIT_FAILURE);
 	}
@@ -65,8 +65,7 @@ void pchar_opcode(stack_t **stack, unsigned int line_number)
 
 	if (temp < 0 || temp > 127)
 	{
-		dprintf(STDERR_FILENO, "L%u: can't pchar, value out of range\n",
-				line_number);
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
 		fclose(essential.fp);
 		stack_free_all(*stack);
 		exit(EXIT_FAILURE);

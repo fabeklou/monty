@@ -31,8 +31,11 @@ void opcode_handler(char *opcode)
 		}
 	}
 
-	dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n",
-			essential.line_num, opcode);
+	if (check_lastchar(opcode))
+		fprintf(stderr, "L%u: unknown instruction %s", essential.line_num, opcode);
+	else
+		fprintf(stderr, "L%u: unknown instruction %s\n", essential.line_num, opcode);
+
 	stack_free_all(essential.st_top);
 	fclose(essential.fp);
 	exit(EXIT_FAILURE);
@@ -70,7 +73,7 @@ void read_tok_run(FILE *fp)
 
 			if (!_is_valid_int(num))
 			{
-				dprintf(STDERR_FILENO, "L%u: usage: push integer\n", essential.line_num);
+				fprintf(stderr, "L%u: usage: push integer\n", essential.line_num);
 				fclose(fp);
 				stack_free_all(essential.st_top);
 				exit(EXIT_FAILURE);
@@ -104,7 +107,7 @@ int main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		dprintf(STDERR_FILENO, "USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -112,7 +115,7 @@ int main(int ac, char **av)
 
 	if (fp == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", av[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
 

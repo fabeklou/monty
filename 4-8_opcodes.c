@@ -18,8 +18,7 @@ void add_opcode(stack_t **stack, unsigned int line_number)
 
 	if (essential.stack_size < 2)
 	{
-		dprintf(STDERR_FILENO, "L%u: can't add, stack too short\n",
-				line_number);
+		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
 		fclose(essential.fp);
 		if (essential.stack_size == 1)
 			stack_free_all(*stack);
@@ -63,8 +62,7 @@ void sub_opcode(stack_t **stack, unsigned int line_number)
 
 	if (essential.stack_size < 2)
 	{
-		dprintf(STDERR_FILENO, "L%u: can't sub, stack too short\n",
-				line_number);
+		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
 		fclose(essential.fp);
 		if (essential.stack_size == 1)
 			stack_free_all(*stack);
@@ -93,8 +91,7 @@ void div_opcode(stack_t **stack, unsigned int line_number)
 
 	if (essential.stack_size < 2)
 	{
-		dprintf(STDERR_FILENO, "L%u: can't div, stack too short\n",
-				line_number);
+		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
 		fclose(essential.fp);
 		if (essential.stack_size == 1)
 			stack_free_all(*stack);
@@ -105,7 +102,7 @@ void div_opcode(stack_t **stack, unsigned int line_number)
 
 	if (temp == 0)
 	{
-		dprintf(STDERR_FILENO, "L%u: division by zero\n", line_number);
+		fprintf(stderr, "L%u: division by zero\n", line_number);
 		fclose(essential.fp);
 		stack_free_all(*stack);
 		exit(EXIT_FAILURE);
@@ -130,8 +127,7 @@ void mul_opcode(stack_t **stack, unsigned int line_number)
 
 	if (essential.stack_size < 2)
 	{
-		dprintf(STDERR_FILENO, "L%u: can't mul, stack too short\n",
-				line_number);
+		fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
 		fclose(essential.fp);
 		if (essential.stack_size == 1)
 			stack_free_all(*stack);

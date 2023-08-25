@@ -2,8 +2,6 @@
 #define MONTY_H
 
 /* standard library functions */
-#define _POSIX_C_SOURCE 200809L
-#define _GNU_SOURCE
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -98,9 +96,9 @@ void rotl_opcode(stack_t **stack, unsigned int line_number);
 void rotr_opcode(stack_t **stack, unsigned int line_number);
 
 /* opcode utils */
-void opcode_handler(char *opcode);
 bool _strcmp(char *s1, char *s2);
 bool _is_valid_int(char *str);
+bool check_lastchar(char *str);
 
 /* execution functions */
 void read_tok_run(FILE *fp);

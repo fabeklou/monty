@@ -22,7 +22,7 @@ void push_opcode(stack_t **stack, unsigned int line_number)
 	if (!verdict)
 		return;
 
-	dprintf(STDERR_FILENO, "Error: malloc failed\n");
+	fprintf(stderr, "Error: malloc failed\n");
 	fclose(essential.fp);
 	stack_free_all(*stack);
 	exit(EXIT_FAILURE);
@@ -62,7 +62,7 @@ void pint_opcode(stack_t **stack, unsigned int line_number)
 {
 	if (stack_is_empty(stack))
 	{
-		dprintf(STDERR_FILENO, "L%u: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 		fclose(essential.fp);
 		exit(EXIT_FAILURE);
 	}
@@ -83,7 +83,7 @@ void pop_opcode(stack_t **stack, unsigned int line_number)
 {
 	if (stack_is_empty(stack))
 	{
-		dprintf(STDERR_FILENO, "L%u: can't pop an empty stack\n", line_number);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		fclose(essential.fp);
 		exit(EXIT_FAILURE);
 	}
@@ -106,7 +106,7 @@ void swap_opcode(stack_t **stack, unsigned int line_number)
 
 	if (essential.stack_size < 2)
 	{
-		dprintf(STDERR_FILENO, "L%u: can't swap, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
 		fclose(essential.fp);
 		if (essential.stack_size == 1)
 			stack_free_all(*stack);
