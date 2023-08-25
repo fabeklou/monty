@@ -28,7 +28,7 @@ int stack_push(stack_t **st, int data)
 		(*st)->next = node;
 
 	essential.stack_size++;
-	essential.st_top = node;
+	*st = node;
 
 	if (essential.stack_size == 1)
 		essential.st_bottom = node;
@@ -54,7 +54,7 @@ void stack_pop(stack_t **st)
 	free(*st);
 
 	essential.stack_size--;
-	essential.st_top = temp;
+	*st = temp;
 
 	if (essential.stack_size == 0)
 		essential.st_bottom = NULL;
