@@ -23,7 +23,7 @@ bool _strcmp(char *s1, char *s2)
 }
 
 /**
- * is_valid_int - checks whether a string can be converted
+ * _is_valid_int - checks whether a string can be converted
  * to a valid integer or not
  *
  * @str: the string to be checked
@@ -32,7 +32,7 @@ bool _strcmp(char *s1, char *s2)
  */
 bool _is_valid_int(char *str)
 {
-	if (str == NULL || !(*str))
+	if (str == NULL || !(*str) || str[0] == '\n')
 		return (false);
 
 	while (*str)
