@@ -62,7 +62,7 @@ void pint_opcode(stack_t **stack, unsigned int line_number)
 {
 	if (stack_is_empty(stack))
 	{
-		dprintf(STDERR_FILENO, "L%d: can't pint, stack empty\n", line_number);
+		dprintf(STDERR_FILENO, "L%u: can't pint, stack empty\n", line_number);
 		fclose(essential.fp);
 		exit(EXIT_FAILURE);
 	}
@@ -83,7 +83,7 @@ void pop_opcode(stack_t **stack, unsigned int line_number)
 {
 	if (stack_is_empty(stack))
 	{
-		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", line_number);
+		dprintf(STDERR_FILENO, "L%u: can't pop an empty stack\n", line_number);
 		fclose(essential.fp);
 		exit(EXIT_FAILURE);
 	}
@@ -107,7 +107,7 @@ void swap_opcode(stack_t **stack, unsigned int line_number)
 
 	if (essential.stack_size < 2)
 	{
-		dprintf(STDERR_FILENO, "L%d: can't swap, stack too short\n", line_number);
+		dprintf(STDERR_FILENO, "L%u: can't swap, stack too short\n", line_number);
 		fclose(essential.fp);
 		if (essential.stack_size == 1)
 			stack_free_all(*stack);
