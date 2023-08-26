@@ -19,7 +19,8 @@ void opcode_handler(char *opcode)
 		{"swap", swap_opcode}, {"add", add_opcode}, {"nop", nop_opcode},
 		{"sub", sub_opcode}, {"div", div_opcode}, {"mul", mul_opcode},
 		{"mod", mod_opcode}, {"pchar", pchar_opcode}, {"pstr", pstr_opcode},
-		{"rotl", rotl_opcode}, {"rotr", rotr_opcode}
+		{"rotl", rotl_opcode}, {"rotr", rotr_opcode}, {"stack", stack_opcode},
+		{"queue", queue_opcode}
 	};
 
 	for (idx = 0; idx < sizeof(oppcode_funcs) / sizeof(oppcode_funcs[0]); idx++)
@@ -56,6 +57,7 @@ void read_tok_run(FILE *fp)
 
 	essential.line_num = 0;
 	essential.stack_size = 0;
+	essential.mode  = true;
 	essential.st_top = NULL;
 	essential.st_bottom = NULL;
 

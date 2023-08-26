@@ -113,20 +113,19 @@ void pstr_opcode(stack_t **stack, unsigned int line_number)
  */
 void rotl_opcode(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp, *st = *stack;
+	stack_t *st = *stack;
 	(void)line_number;
 
 	if (essential.stack_size < 2)
 		return;
 
 	st->next = essential.st_bottom;
-	temp = st->prev;
+	*stack = st->prev;
 	st->prev = NULL;
-	*stack = temp;
-
+	essential.st_bottom->prev = st;
 	(*stack)->next = NULL;
 
-	essential.st_top = temp;
+	essential.st_top = *stack;
 	essential.st_bottom = st;
 }
 

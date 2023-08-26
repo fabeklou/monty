@@ -49,6 +49,8 @@ typedef struct instruction_s
  * @line_num: number of the current line treated in the bytecode file
  * @data: data to be pushed in the stack
  * @stack_size: number of element/node in the stack
+ * @mode: is the mode/structure in which the data is stored. his value is set
+ *			to stack (true) by default, but can be set to queue (false)
  * @st_top: pointer to the top of the stack
  * @st_bottom: pointer to the bottom of the stack
  *
@@ -61,6 +63,7 @@ typedef struct trackg_s
 	unsigned int line_num;
 	int data;
 	unsigned int stack_size;
+	bool mode;
 	stack_t *st_top;
 	stack_t *st_bottom;
 } trackg_t;
@@ -77,6 +80,7 @@ void stack_free_all(stack_t *st);
 void stack_display(stack_t *st);
 
 /* queue functions */
+int en_queue(stack_t **st, int data);
 
 /* opcode functions */
 void pall_opcode(stack_t **stack, unsigned int line_number);
@@ -94,6 +98,8 @@ void pchar_opcode(stack_t **stack, unsigned int line_number);
 void pstr_opcode(stack_t **stack, unsigned int line_number);
 void rotl_opcode(stack_t **stack, unsigned int line_number);
 void rotr_opcode(stack_t **stack, unsigned int line_number);
+void stack_opcode(stack_t **stack, unsigned int line_number);
+void queue_opcode(stack_t **stack, unsigned int line_number);
 
 /* opcode utils */
 bool _strcmp(char *s1, char *s2);

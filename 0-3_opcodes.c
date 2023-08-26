@@ -17,7 +17,10 @@ void push_opcode(stack_t **stack, unsigned int line_number)
 	int verdict;
 	(void)line_number;
 
-	verdict = stack_push(stack, essential.data);
+	if (essential.mode == true)
+		verdict = stack_push(stack, essential.data);
+	else
+		verdict = en_queue(&essential.st_bottom, essential.data);
 
 	if (!verdict)
 		return;
